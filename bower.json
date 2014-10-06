@@ -2,6 +2,7 @@
   "name": "colormaster",
   "version": "0.0.0",
   "dependencies": {
+    "bootstrap": "~3.2.0",
     "jquery": "~2.1.1"
   },
   "devDependencies": {}
