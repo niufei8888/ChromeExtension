@@ -3,12 +3,15 @@
 console.log('\'Allo \'Allo! Popup');
 
 $(document).ready(function(){
-    $("#foo_button").click(function() {
-        var curNode = $(this);
-        if (curNode.text() == "foo") {
-            curNode.text("bar");
+    $("#switcher").click(function( event ) {
+        event.preventDefault();
+        var node = $(this);
+        if (node.find("span[class='glyphicon glyphicon-eye-close']").is(":visible")) {
+            node.find('span.glyphicon-eye-close').hide();
+            node.find('span.glyphicon-eye-open').show();
         } else {
-            curNode.text("foo");
+            node.find('span.glyphicon-eye-close').show();
+            node.find('span.glyphicon-eye-open').hide();
         }
     });
 });
