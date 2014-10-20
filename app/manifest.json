@@ -1,30 +1,40 @@
 {
-  "name": "__MSG_appName__",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "__MSG_appDescription__",
-  "icons": {
-    "16": "images/icon-16.png",
-    "128": "images/icon-128.png"
-  },
-  "default_locale": "en",
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
-  "background": {
-    "scripts": [
-      "scripts/chromereload.js",
-      "scripts/background.js"
-    ]
-  },
-  "browser_action": {
-    "default_icon": {
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png"
+    "name": "__MSG_appName__",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "__MSG_appDescription__",
+    "icons": {
+        "16": "images/icon-16.png",
+        "128": "images/icon-128.png"
     },
-    "default_title": "ColorMaster",
-    "default_popup": "popup.html"
-  },
-  "options_page": "options.html",
-  "omnibox": {
-    "keyword": "ColorMaster"
-  }
+    "default_locale": "en",
+    "permissions": [
+        "contextMenus", "storage", "tabs"
+    ],
+    "background": {
+        "scripts": [
+            "scripts/background.js"
+        ],
+        "persistent": false
+    },
+    "browser_action": {
+        "default_icon": {
+            "19": "images/icon-19.png",
+            "38": "images/icon-38.png"
+        },
+        "default_title": "ColorMaster",
+        "default_popup": "popup.html"
+    },
+    "omnibox": {
+        "keyword": "ColorMaster"
+    },
+    "content_scripts": [
+        {
+            "run_at":"document_start",
+            "all_frames":true,
+            "matches": ["*://*/*"],
+            "js": ["bower_components/jquery/dist/jquery.min.js", "scripts/content.js"]
+        }
+    ],
+    "web_accessible_resources": ["bower_components/jquery/dist/jquery.min.map"]
 }
