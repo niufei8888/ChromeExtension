@@ -1,6 +1,7 @@
-console.log("Testing content script!");
-
-// always remember to wait until page fully loaded!
+//// always remember to wait until page fully loaded!
 //$(document).ready(function(){
-//    document.body.style.backgroundColor="green";
+//    if (settings.enabled) {
+//        // change the body color
+//        document.body.style.backgroundColor = settings.bodyColor;
+//    }
 //});
