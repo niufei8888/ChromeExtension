@@ -10,7 +10,7 @@ console.log('\'Allo \'Allo! Popup');
 // define the on click methods
 $(document).ready(function(){
     $("#switcher").click(function( event ) {
-        // prevent the default event of the swticher
+        // prevent the default event of the switcher
         event.preventDefault();
 
         // modify the setting in background page
@@ -20,6 +20,16 @@ $(document).ready(function(){
 
         // modify the popup based on the global setting
         applySettingPopup();
+
+        // send message to the content for all the tabs
+        chrome.tabs.query({active: true}, function (tabs) {
+            for (var i = 0; i < tabs.length; ++i) {
+                console.log("sending message to tab " + i);
+                chrome.runtime.sendMessage(tabs[i].id, {enabled: settings.enabled}, function(response) {
+                    console.log(response);
+                });
+            }
+        });
     });
 });
 
