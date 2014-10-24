@@ -25,7 +25,7 @@ $(document).ready(function(){
         chrome.tabs.query({active: true}, function (tabs) {
             for (var i = 0; i < tabs.length; ++i) {
                 console.log("sending message to tab " + i);
-                chrome.runtime.sendMessage(tabs[i].id, {enabled: settings.enabled}, function(response) {
+                chrome.tabs.sendMessage(tabs[i].id, {enabled: settings.enabled, bodyColor: settings.bodyColor}, function(response) {
                     console.log(response);
                 });
             }

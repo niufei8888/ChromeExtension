@@ -1,19 +1,21 @@
 // always remember to wait until page fully loaded!
 $(document).ready(function(){
-    console.log("Testing content script.");
+
+    var pageOriginSetting = {
+        bodyColor: document.body.style.backgroundColor
+    };
+
     chrome.runtime.onMessage.addListener(
         function (request, sender, sendResponse) {
-            console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
-            console.log("request is: " + request.enabled);
+            // change the body color if enabled
+            if (request.enabled) {
+                document.body.style.backgroundColor = request.bodyColor;
+            } else {
+                document.body.style.backgroundColor = pageOriginSetting.bodyColor;
+            }
 
-            // change the body color
-            document.body.style.backgroundColor = request.enabled;
-
-            sendResponse(function() {
-                return "get it";
-            });
+            // ! Note that here is expecting an object, not an anonymous function
+            sendResponse("I got it.");
         }
     );
 });
