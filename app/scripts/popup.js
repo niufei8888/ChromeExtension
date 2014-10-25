@@ -7,8 +7,8 @@ $(document).ready(applySettingPopup);
 
 console.log('\'Allo \'Allo! Popup');
 
-// define the on click methods
 $(document).ready(function(){
+    // define the on click event for the enable/disable switcher
     $("#switcher").click(function( event ) {
         // prevent the default event of the switcher
         event.preventDefault();
